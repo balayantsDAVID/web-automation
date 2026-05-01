@@ -29,7 +29,6 @@ router.put('/theme/:id', async (req, res) => {
   res.json(updatedTheme);
 });
 
-// NEW: Delete Theme
 router.delete('/theme/:id', async (req, res) => {
   await Theme.findByIdAndDelete(req.params.id);
   res.json({ message: 'Theme deleted' });
@@ -46,7 +45,6 @@ router.put('/room/:id', async (req, res) => {
   res.json(updatedRoom);
 });
 
-// NEW: Delete Room
 router.delete('/room/:id', async (req, res) => {
   await Room.findByIdAndDelete(req.params.id);
   res.json({ message: 'Room deleted' });

@@ -2,10 +2,12 @@ import mongoose from 'mongoose';
 
 const connectDB = async () => {
   try {
-    await mongoose.connect('mongodb://mongo:27017/questrooms');
-    console.log('MongoDB connected');
+    const mongoURI = process.env.MONGO_URI || 'mongodb://mongo:27017/questrooms';
+
+    await mongoose.connect(mongoURI);
+    console.log(`MongoDB connected to: ${mongoURI.split('@').pop()}`);
   } catch (err) {
-    console.error(err);
+    console.error('MongoDB connection error:', err);
     process.exit(1);
   }
 };

@@ -43,7 +43,7 @@ body {
   line-height: 1.6;
   margin: 15px 0;
   font-style: italic;
-  flex-grow: 1; 
+  flex-grow: 1;
 }
 
 .theme-section {
@@ -72,14 +72,17 @@ body {
   margin: 0;
 }
 
-input, select, textarea, button {
+input,
+select,
+textarea,
+button {
   width: 100%;
   box-sizing: border-box;
   padding: 12px;
   margin: 8px 0 15px 0;
   border-radius: 8px;
-  border: 1px solid rgba(255,255,255,0.2);
-  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.1);
   color: white;
   font-family: inherit;
   font-size: 1rem;
@@ -91,7 +94,7 @@ textarea {
 }
 
 ::placeholder {
-  color: rgba(255,255,255,0.6);
+  color: rgba(255, 255, 255, 0.6);
 }
 
 option {
@@ -130,7 +133,7 @@ summary {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  gap: 15px; 
+  gap: 15px;
 }
 
 summary::-webkit-details-marker {
@@ -141,7 +144,8 @@ summary::after {
   content: '▼';
   font-size: 0.8em;
   transition: transform 0.3s;
-  margin-left: auto; /* Pushes the arrow to the far right */
+  margin-left: auto;
+  /* Pushes the arrow to the far right */
 }
 
 details[open] summary::after {
@@ -162,7 +166,23 @@ details[open] summary::after {
   text-transform: uppercase;
   margin-bottom: 0px;
 }
-.badge.easy { background: #2ecc71; color: #000; }
-.badge.medium { background: #f1c40f; color: #000; }
-.badge.hard { background: #e67e22; color: #000; }
-.badge.expert { background: #e74c3c; color: #fff; }
+
+.badge.easy {
+  background: #2ecc71;
+  color: #000;
+}
+
+.badge.medium {
+  background: #f1c40f;
+  color: #000;
+}
+
+.badge.hard {
+  background: #e67e22;
+  color: #000;
+}
+
+.badge.expert {
+  background: #e74c3c;
+  color: #fff;
+}

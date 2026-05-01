@@ -6,14 +6,14 @@ window.addEventListener("DOMContentLoaded", async () => {
   if (roomsContainer) {
     const res = await fetch('/api/rooms');
     const rooms = await res.json();
-    
+
     roomsContainer.innerHTML = '';
     rooms.forEach(room => {
       const div = document.createElement('div');
       div.className = 'card';
-      
+
       const diffClass = (room.difficulty || 'easy').toLowerCase();
-      
+
       div.innerHTML = `
         <div>
           <h2 style="margin-top:0; color: #fff; margin-bottom: 10px;">${room.name}</h2>
@@ -44,7 +44,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       themes.forEach(t => {
         const opt = `<option value="${t._id}">${t.name}</option>`;
         select.innerHTML += opt;
-        if(editRoomThemeSelect) editRoomThemeSelect.innerHTML += opt;
+        if (editRoomThemeSelect) editRoomThemeSelect.innerHTML += opt;
       });
     }
 
@@ -53,7 +53,7 @@ window.addEventListener("DOMContentLoaded", async () => {
       themes.forEach(t => {
         const details = document.createElement('details');
         const safeDesc = (t.description || '').replace(/[\n\r]/g, '\\n').replace(/'/g, "\\'");
-        
+
         details.innerHTML = `
           <summary>${t.name}</summary>
           <div class="details-content">
@@ -75,9 +75,9 @@ window.addEventListener("DOMContentLoaded", async () => {
     }
 
     if (adminRoomsContainer) {
-      const roomRes = await fetch('/api/rooms'); 
+      const roomRes = await fetch('/api/rooms');
       const rooms = await roomRes.json();
-      
+
       adminRoomsContainer.innerHTML = '';
       rooms.forEach(room => {
         const details = document.createElement('details');
@@ -114,8 +114,8 @@ window.addEventListener("DOMContentLoaded", async () => {
   if (createThemeBtn) {
     createThemeBtn.addEventListener('click', async () => {
       const name = document.getElementById('themeName').value;
-      const description = document.getElementById('themeDesc').value; 
-      if(!name) return alert("Please enter a theme name");
+      const description = document.getElementById('themeDesc').value;
+      if (!name) return alert("Please enter a theme name");
 
       await fetch('/admin/theme', {
         method: 'POST',
@@ -123,7 +123,7 @@ window.addEventListener("DOMContentLoaded", async () => {
         body: JSON.stringify({ name, description })
       });
       alert('Theme created');
-      window.location.reload(); 
+      window.location.reload();
     });
   }
 });
@@ -134,8 +134,8 @@ window.createRoom = async () => {
   const description = document.getElementById('roomDesc').value;
   const difficulty = document.getElementById('difficulty').value;
   const themeSelect = document.getElementById('themeSelect');
-  
-  if(!name) return alert("Please fill room name");
+
+  if (!name) return alert("Please fill room name");
 
   const themeId = themeSelect.value ? themeSelect.value : null;
 
@@ -144,9 +144,9 @@ window.createRoom = async () => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, description, difficulty, themeId })
   });
-  
+
   alert('Room created');
-  window.location.reload(); 
+  window.location.reload();
 };
 
 // === EDITING & DELETING FUNCTIONS ===
@@ -155,7 +155,7 @@ window.openEditTheme = (id, name, desc) => {
   document.getElementById('editThemeId').value = id;
   document.getElementById('editThemeName').value = name;
   document.getElementById('editThemeDesc').value = desc;
-  window.scrollTo({ top: 0, behavior: 'smooth' }); 
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 };
 
 window.openEditRoom = (id, name, desc, difficulty, themeId) => {
@@ -182,7 +182,7 @@ window.submitEditTheme = async () => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, description })
   });
-  
+
   alert('Theme updated!');
   window.location.reload();
 };
@@ -199,14 +199,14 @@ window.submitEditRoom = async () => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ name, description, difficulty, themeId })
   });
-  
+
   alert('Room updated!');
   window.location.reload();
 };
 
 window.deleteTheme = async (id) => {
   if (!confirm("Are you sure you want to delete this theme?")) return;
-  
+
   await fetch(`/admin/theme/${id}`, { method: 'DELETE' });
   alert('Theme deleted!');
   window.location.reload();
@@ -214,7 +214,7 @@ window.deleteTheme = async (id) => {
 
 window.deleteRoom = async (id) => {
   if (!confirm("Are you sure you want to delete this room?")) return;
-  
+
   await fetch(`/admin/room/${id}`, { method: 'DELETE' });
   alert('Room deleted!');
   window.location.reload();
